@@ -1,0 +1,15 @@
+(defun c:bgxg ()
+  (setq ent (car (entsel "\nChoose Dimension: ")))
+  (if ent
+    (progn
+      (setq b (getreal "\n±Í∏ﬂΩµµÕ÷µ:<0.05>"))
+      (if (not b)
+        (setq b 0.05))
+      (setq entdata (entget ent))
+      (setq dim-val (cdr (assoc 1 entdata)))
+        (setq a (atof dim-val))
+        (setq new-str (rtos (- a b) 2 3))
+        (entmod (subst (cons 1 new-str) (assoc 1 entdata) entdata))
+        )
+      )
+    )
